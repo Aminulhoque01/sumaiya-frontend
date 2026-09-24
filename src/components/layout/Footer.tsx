@@ -453,7 +453,7 @@ export default function Footer() {
                     h-2
                     w-2
                     rounded-full
-                    bg-[var(--foreground)]
+                    bg-cyan-500
                   "
                 />
               </span>
