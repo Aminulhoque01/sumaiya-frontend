@@ -218,7 +218,7 @@ export default function Hero() {
     {
       label: "Behance",
       icon: FaBehance,
-      href: "#",
+      href: "https://www.behance.net/sumaiyasiddiqa01",
     },
     {
       label: "LinkedIn",

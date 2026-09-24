@@ -15,7 +15,7 @@ import { motion, type Variants } from "framer-motion";
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:5000/api";
+  "https://sumaiya-backend.vercel.app/api";
 
 interface ContactFormData {
   name: string;

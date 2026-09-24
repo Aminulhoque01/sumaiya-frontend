@@ -1,4 +1,5 @@
 "use client";
+import logo from "../../../public/assest/SD.png"
 
 import { useState } from "react";
 import {
@@ -7,6 +8,7 @@ import {
   X,
 } from "lucide-react";
 import ThemeToggle from "../common/ThemeToggle";
+import Image from "next/image";
  
 
 const navItems = [
@@ -97,12 +99,13 @@ export default function Navbar() {
                 justify-center
                 overflow-hidden
                 rounded-full
-                bg-[var(--foreground)]
-                text-[var(--background)]
+                 
+              
                 transition-transform
                 duration-500
                 group-hover:rotate-[-8deg]
                 group-hover:scale-105
+                
               "
             >
               <span
@@ -114,7 +117,7 @@ export default function Navbar() {
                   tracking-[-0.08em]
                 "
               >
-                SH
+                <Image src={logo} width={30} height={30} alt="logo"/>
               </span>
 
               <span

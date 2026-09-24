@@ -6,6 +6,7 @@ import {
   Mail,
   MapPin,
   Sparkles,
+  X,
 } from "lucide-react";
 
 import {
@@ -42,33 +43,24 @@ const socials = [
   {
     label: "Behance",
     icon: FaBehance,
-    href: "https://www.behance.net/",
+    href: "https://www.behance.net/sumaiyasiddiqa01",
   },
   {
-    label: "Dribbble",
-    icon: FaDribbble,
-    href: "https://dribbble.com/",
-  },
-  {
-    label: "Instagram",
-    icon: FaInstagram,
-    href: "https://www.instagram.com/",
+    label: "X",
+    icon: X,
+    href: "https://x.com/ms_siddiqa",
   },
   {
     label: "LinkedIn",
     icon: FaLinkedinIn,
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/sumaiya-siddiqa01/",
   },
   {
     label: "Facebook",
     icon: FaFacebookF,
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/ms.sumaiyasiddiqa",
   },
-  {
-    label: "Pinterest",
-    icon: FaPinterestP,
-    href: "https://www.pinterest.com/",
-  },
+  
 ];
 
 /* =========================================================
@@ -747,7 +739,7 @@ export default function Footer() {
                     text-[var(--subtle)]
                   "
                 >
-                  Based in
+                  Location
                 </p>
 
                 <div className="flex items-center gap-2">
