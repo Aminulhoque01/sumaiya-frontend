@@ -442,7 +442,7 @@ export default function Footer() {
                     inset-0
                     animate-ping
                     rounded-full
-                    bg-cyan-500
+                    bg-[var(--foreground)]
                     opacity-40
                   "
                 />
