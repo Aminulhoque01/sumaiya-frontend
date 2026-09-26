@@ -23,7 +23,6 @@ import {
 } from "lucide-react";
 
 import Image from "next/image";
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
 /* =====================================================
    ANIMATION
@@ -91,8 +90,8 @@ function getServiceIcon(service: Service) {
     return exactIcon;
   }
 
-  const matchedIcon = Object.entries(iconMap).find(
-    ([key]) => title.includes(key)
+  const matchedIcon = Object.entries(iconMap).find(([key]) =>
+    title.includes(key)
   )?.[1];
 
   return matchedIcon || iconMap.default;
@@ -111,10 +110,7 @@ export default function Services() {
 
   const visibleServices = [...services]
     .filter((service) => service.isActive !== false)
-    .sort(
-      (a, b) =>
-        (a.order ?? 0) - (b.order ?? 0)
-    );
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   return (
     <section
@@ -185,20 +181,11 @@ export default function Services() {
             lg:justify-between
           "
         >
-          {/* Left */}
-
           <div className="max-w-4xl">
 
             {/* Eyebrow */}
 
-            <div
-              className="
-                mb-6
-                flex
-                items-center
-                gap-3
-              "
-            >
+            <div className="mb-6 flex items-center gap-3">
               <span
                 className="
                   h-px
@@ -232,6 +219,7 @@ export default function Services() {
               "
             >
               What I
+
               <span
                 className="
                   ml-3
@@ -243,16 +231,7 @@ export default function Services() {
             </h2>
           </div>
 
-          {/* Right description */}
-
-          <div
-            className="
-              max-w-sm
-              lg:pb-2
-            "
-          >
-            
-          </div>
+          <div className="max-w-sm lg:pb-2" />
         </motion.div>
 
         {/* =================================================
@@ -329,23 +308,16 @@ export default function Services() {
                   lg:grid-cols-4
                 "
               >
-                {visibleServices.map(
-                  (service, index) => (
-                    <ServiceCard
-                      key={service._id}
-                      service={service}
-                      index={index}
-                    />
-                  )
-                )}
+                {visibleServices.map((service, index) => (
+                  <ServiceCard
+                    key={service._id}
+                    service={service}
+                    index={index}
+                  />
+                ))}
               </div>
             )}
         </div>
-
-        {/* =================================================
-            BOTTOM LINE
-        ================================================= */}
- 
       </div>
     </section>
   );
@@ -399,23 +371,28 @@ function ServiceCard({
         p-6
         transition-all
         duration-500
+
         hover:-translate-y-2
         hover:border-[var(--border-strong)]
+
         hover:shadow-[0_30px_80px_rgba(0,0,0,0.10)]
+
         dark:hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]
+
         md:p-7
       "
     >
 
       {/* =================================================
-          HOVER IMAGE
+          HOVER BACKGROUND
       ================================================= */}
 
-      {service.image?.url && (
+      {service.image?.url ? (
         <div
           className="
             absolute
             inset-0
+            z-0
             overflow-hidden
             opacity-0
             transition-opacity
@@ -425,10 +402,7 @@ function ServiceCard({
         >
           <Image
             src={service.image.url}
-            alt={
-              service.image.alt ||
-              service.title
-            }
+            alt={service.image.alt || service.title}
             fill
             sizes="
               (max-width: 640px) 100vw,
@@ -443,17 +417,17 @@ function ServiceCard({
             "
           />
 
-          {/* Dark overlay */}
+          {/* Strong dark overlay */}
 
           <div
             className="
               absolute
               inset-0
-              bg-black/70
+              bg-black/75
             "
           />
 
-          {/* Gradient */}
+          {/* Bottom gradient */}
 
           <div
             className="
@@ -461,11 +435,34 @@ function ServiceCard({
               inset-0
               bg-gradient-to-t
               from-black
-              via-black/30
-              to-transparent
+              via-black/40
+              to-black/20
             "
           />
         </div>
+      ) : (
+        /*
+          IMPORTANT:
+          If there is no image, the old version became
+          white background + white text on light mode.
+
+          This background fixes that.
+        */
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-0
+            bg-[var(--card)]
+            transition-colors
+            duration-500
+
+            group-hover:bg-neutral-900
+            dark:group-hover:bg-neutral-950
+          "
+        />
       )}
 
       {/* =================================================
@@ -502,15 +499,14 @@ function ServiceCard({
               font-medium
               tracking-[0.25em]
               text-[var(--subtle)]
+
               transition-colors
               duration-500
+
               group-hover:text-white/60
             "
           >
-            {String(index + 1).padStart(
-              2,
-              "0"
-            )}
+            {String(index + 1).padStart(2, "0")}
           </span>
 
           {/* Arrow */}
@@ -526,9 +522,12 @@ function ServiceCard({
               border
               border-[var(--border)]
               text-[var(--foreground)]
+
               transition-all
               duration-500
+
               group-hover:rotate-45
+
               group-hover:border-white
               group-hover:bg-white
               group-hover:text-black
@@ -554,14 +553,20 @@ function ServiceCard({
             items-center
             justify-center
             rounded-[20px]
+
             border
             border-[var(--border)]
+
             bg-[var(--background)]
             text-[var(--foreground)]
+
             shadow-sm
+
             transition-all
             duration-500
+
             group-hover:scale-110
+
             group-hover:border-white/30
             group-hover:bg-white/10
             group-hover:text-white
@@ -585,16 +590,18 @@ function ServiceCard({
             font-medium
             leading-[1]
             tracking-[-0.05em]
+
             text-[var(--foreground)]
+
             transition-colors
             duration-500
+
             group-hover:text-white
           "
         >
           {service.title}
         </h3>
 
-       
         {/* =================================================
             DESCRIPTION
         ================================================= */}
@@ -606,10 +613,13 @@ function ServiceCard({
               max-w-[290px]
               text-xs
               leading-5
+
               text-[var(--muted)]
+
               transition-colors
               duration-500
-              group-hover:text-white/65
+
+              group-hover:text-white/75
             "
           >
             {service.description}
@@ -630,53 +640,54 @@ function ServiceCard({
             >
               {service.features
                 .slice(0, 4)
-                .map(
-                  (
-                    feature: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined,
-                    featureIndex: any
-                  ) => (
-                    <div
-                      key={`${feature}-${featureIndex}`}
+                .map((feature, featureIndex) => (
+                  <div
+                    key={`${String(feature)}-${featureIndex}`}
+                    className="
+                      flex
+                      items-center
+                      gap-2.5
+
+                      text-[11px]
+                      text-[var(--muted)]
+
+                      transition-colors
+                      duration-500
+
+                      group-hover:text-white/80
+                    "
+                  >
+                    <span
                       className="
                         flex
+                        h-4
+                        w-4
+                        shrink-0
                         items-center
-                        gap-2.5
-                        text-[11px]
-                        text-[var(--muted)]
-                        transition-colors
+                        justify-center
+                        rounded-full
+
+                        bg-[var(--foreground)]/5
+                        text-[var(--foreground)]
+
+                        transition-all
                         duration-500
-                        group-hover:text-white/75
+
+                        group-hover:bg-white/15
+                        group-hover:text-white
                       "
                     >
-                      <span
-                        className="
-                          flex
-                          h-4
-                          w-4
-                          shrink-0
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-[var(--foreground)]/5
-                          text-[var(--foreground)]
-                          transition-all
-                          duration-500
-                          group-hover:bg-white/15
-                          group-hover:text-white
-                        "
-                      >
-                        <Check
-                          size={10}
-                          strokeWidth={2.2}
-                        />
-                      </span>
+                      <Check
+                        size={10}
+                        strokeWidth={2.2}
+                      />
+                    </span>
 
-                      <span>
-                        {feature}
-                      </span>
-                    </div>
-                  )
-                )}
+                    <span>
+                      {feature}
+                    </span>
+                  </div>
+                ))}
             </div>
           )}
 
@@ -690,9 +701,12 @@ function ServiceCard({
             className="
               h-px
               w-full
+
               bg-[var(--border)]
+
               transition-colors
               duration-500
+
               group-hover:bg-white/20
             "
           />
@@ -711,9 +725,12 @@ function ServiceCard({
                 font-medium
                 uppercase
                 tracking-[0.22em]
+
                 text-[var(--subtle)]
+
                 transition-colors
                 duration-500
+
                 group-hover:text-white/45
               "
             >
@@ -725,9 +742,12 @@ function ServiceCard({
                 h-1.5
                 w-1.5
                 rounded-full
+
                 bg-[var(--foreground)]
+
                 transition-colors
                 duration-500
+
                 group-hover:bg-white
               "
             />
@@ -766,7 +786,8 @@ function ServiceSkeleton() {
             p-7
           "
         >
-          {/* top */}
+
+          {/* Top */}
 
           <div className="flex justify-between">
             <div
@@ -788,7 +809,7 @@ function ServiceSkeleton() {
             />
           </div>
 
-          {/* icon */}
+          {/* Icon */}
 
           <div
             className="
@@ -800,7 +821,7 @@ function ServiceSkeleton() {
             "
           />
 
-          {/* title */}
+          {/* Title */}
 
           <div
             className="
@@ -812,7 +833,7 @@ function ServiceSkeleton() {
             "
           />
 
-          {/* short description */}
+          {/* Description */}
 
           <div
             className="
@@ -823,8 +844,6 @@ function ServiceSkeleton() {
               bg-[var(--border)]
             "
           />
-
-          {/* description */}
 
           <div
             className="
@@ -846,42 +865,40 @@ function ServiceSkeleton() {
             "
           />
 
-          {/* features */}
+          {/* Features */}
 
           <div className="mt-6 space-y-3">
-            {[1, 2, 3].map(
-              (feature) => (
+            {[1, 2, 3].map((feature) => (
+              <div
+                key={feature}
+                className="
+                  flex
+                  items-center
+                  gap-2
+                "
+              >
                 <div
-                  key={feature}
                   className="
-                    flex
-                    items-center
-                    gap-2
+                    h-4
+                    w-4
+                    rounded-full
+                    bg-[var(--border)]
                   "
-                >
-                  <div
-                    className="
-                      h-4
-                      w-4
-                      rounded-full
-                      bg-[var(--border)]
-                    "
-                  />
+                />
 
-                  <div
-                    className="
-                      h-3
-                      w-2/3
-                      rounded
-                      bg-[var(--border)]
-                    "
-                  />
-                </div>
-              )
-            )}
+                <div
+                  className="
+                    h-3
+                    w-2/3
+                    rounded
+                    bg-[var(--border)]
+                  "
+                />
+              </div>
+            ))}
           </div>
 
-          {/* bottom */}
+          {/* Bottom */}
 
           <div
             className="
