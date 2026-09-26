@@ -1,3 +1,4 @@
+ 
 "use client";
 
 import {
@@ -10,14 +11,12 @@ import {
 import {
   ArrowUpRight,
   Sparkles,
-  Palette,
   MousePointer2,
   X,
 } from "lucide-react";
 
 import {
   FaFacebookF,
-  FaInstagram,
   FaLinkedinIn,
   FaBehance,
   FaFigma,
@@ -188,6 +187,21 @@ export default function Hero() {
 
   const experience =
     profile?.yearsOfExperience;
+
+  // ============================================================
+  // DYNAMIC AVAILABILITY
+  //
+  // Backend example:
+  //
+  // {
+  //   "availability": "Available for Freelance & Remote"
+  // }
+  //
+  // ============================================================
+
+  const availability =
+    profile?.availability ||
+    "Available for Freelance & Remote";
 
   // ============================================================
   // SCROLL
@@ -368,15 +382,13 @@ export default function Hero() {
             -translate-x-1/2
             -translate-y-1/2
             rounded-full
-            border
             border-dashed
+            border
             border-[var(--foreground)]/[0.018]
           "
         />
 
-        {/* =================================================
-            INTERACTIVE PARTICLES
-        ================================================== */}
+        {/* Interactive Particles */}
 
         <motion.div
           style={{
@@ -587,8 +599,8 @@ export default function Hero() {
                 delay: 0.1,
               }}
               className="
-                pt-5
                 mb-6
+                pt-5
                 text-sm
                 font-semibold
                 tracking-tight
@@ -602,7 +614,6 @@ export default function Hero() {
             {/* Main Heading */}
 
             <div className="overflow-hidden">
-
               <motion.h1
                 initial={{
                   opacity: 0,
@@ -646,7 +657,6 @@ export default function Hero() {
                   Experiences.
                 </span>
               </motion.h1>
-
             </div>
 
             {/* =================================================
@@ -712,7 +722,6 @@ export default function Hero() {
                       lg:h-9
                     "
                   />
-
                 </div>
 
                 {/* Small cyan underline */}
@@ -870,7 +879,6 @@ export default function Hero() {
 
                 Let's Talk
               </motion.button>
-
             </motion.div>
 
             {/* =================================================
@@ -938,17 +946,10 @@ export default function Hero() {
                 )
               )}
             </motion.div>
-
-            {/* Skills */}
-
           </div>
 
           {/* ===================================================
               RIGHT IMAGE
-              
-              IMPORTANT:
-              - Image section moved upward on desktop
-              - Aligned closer to "Hello, I'm Sumaiya Haque"
           ==================================================== */}
 
           <motion.div
@@ -1122,10 +1123,6 @@ export default function Hero() {
                 "
               />
             </motion.div>
-
-            {/* =================================================
-                DESIGN SOFTWARE ICONS
-            ================================================== */}
 
             {/* Photoshop */}
 
@@ -1415,8 +1412,7 @@ export default function Hero() {
             </motion.div>
 
             {/* =================================================
-                AVAILABLE FOR BADGE
-                TWO LINE VERSION
+                DYNAMIC AVAILABILITY BADGE
             ================================================== */}
 
             <motion.div
@@ -1440,10 +1436,9 @@ export default function Hero() {
                 top-[4%]
                 z-30
                 flex
-                min-w-[150px]
-                flex-col
-                items-start
-                gap-0.5
+                max-w-[190px]
+                items-center
+                gap-2.5
                 rounded-2xl
                 border
                 border-cyan-400/20
@@ -1454,58 +1449,42 @@ export default function Hero() {
                 backdrop-blur-md
               "
             >
-              {/* First Line */}
 
-              <div className="flex items-center gap-2">
+              {/* Status Dot */}
 
-                <motion.span
-                  animate={{
-                    scale: [1, 1.4, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                  }}
-                  className="
-                    h-2
-                    w-2
-                    shrink-0
-                    rounded-full
-                    bg-cyan-400
-                    shadow-[0_0_12px_#22d3ee]
-                  "
-                />
+              <motion.span
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                className="
+                  h-2
+                  w-2
+                  shrink-0
+                  rounded-full
+                  bg-cyan-400
+                  shadow-[0_0_12px_#22d3ee]
+                "
+              />
 
-                <span
-                  className="
-                    text-[9px]
-                    font-medium
-                    uppercase
-                    tracking-[0.16em]
-                    text-[var(--muted)]
-                  "
-                >
-                  Available for
-                </span>
-
-              </div>
-
-              {/* Second Line */}
+              {/* Backend Dynamic Text */}
 
               <span
                 className="
-                  pl-4
                   text-[9px]
                   font-semibold
                   uppercase
-                  tracking-[0.16em]
+                  leading-4
+                  tracking-[0.12em]
                   text-cyan-400
                 "
               >
-                Freelance & Remote
+                {availability}
               </span>
-
             </motion.div>
 
             {/* =================================================
@@ -1645,10 +1624,8 @@ export default function Hero() {
                 strokeWidth={1.5}
               />
             </motion.div>
-
           </motion.div>
         </div>
-
       </div>
     </section>
   );
