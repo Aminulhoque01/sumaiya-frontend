@@ -494,7 +494,7 @@ export default function Footer() {
             {/* Email */}
 
             <a
-              href="mailto:sumaiyasiddiqa823@gmail.com"
+              href="mailto:siddiqasumaiya114@gmail.com"
               className="
                 group
                 mt-8

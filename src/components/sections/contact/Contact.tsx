@@ -53,8 +53,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "sumaiyasiddiqa823@gmail.com",
-    href: "mailto:sumaiyasiddiqa823@gmail.com",
+    value: "siddiqasumaiya114@gmail.com",
+    href: "mailto:siddiqasumaiya114@gmail.com",
   },
   {
     icon: Phone,
@@ -166,7 +166,7 @@ export default function Contact() {
         transition-colors
         duration-500
         md:py-12
-        lg:py-20
+        lg:py-10
       "
     >
       {/* Decorative background */}
@@ -176,7 +176,7 @@ export default function Contact() {
           pointer-events-none
           absolute
           -right-40
-          top-20
+          top-10
           h-[500px]
           w-[500px]
           rounded-full
@@ -192,7 +192,7 @@ export default function Contact() {
           pointer-events-none
           absolute
           -right-20
-          top-40
+          top-20
           h-[320px]
           w-[320px]
           rounded-full
