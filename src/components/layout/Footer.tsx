@@ -541,7 +541,7 @@ export default function Footer() {
                   group-hover:border-[var(--foreground)]
                 "
               >
-                sumaiyasiddiqa823@gmail.com
+                siddiqasumaiya114@gmail.com
               </span>
 
               <ArrowUpRight
